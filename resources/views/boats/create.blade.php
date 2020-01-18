@@ -1,4 +1,4 @@
-@extends('boats.layout')
+@extends('layouts.app')
   
 @section('content')
 <div class="row">
@@ -7,7 +7,7 @@
             <h2>Add New Boat</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('boats.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('home') }}"> Back</a>
         </div>
     </div>
 </div>

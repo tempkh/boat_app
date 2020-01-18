@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+Route::get('/home', 'BoatController@index')->name('home');
 Route::resource('boats','BoatController');

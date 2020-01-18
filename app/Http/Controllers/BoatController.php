@@ -8,6 +8,17 @@ use Illuminate\Support\Facades\Config;
 
 class BoatController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +30,7 @@ class BoatController extends Controller
 
         $boats = Boat::latest()->paginate($boatByPage);
   
-        return view('boats.index',compact('boats'))
+        return view('home',compact('boats'))
             ->with('i', (request()->input('page', 1) - 1) * $boatByPage);
     }
    
@@ -48,7 +59,7 @@ class BoatController extends Controller
   
         Boat::create($request->all());
    
-        return redirect()->route('boats.index')
+        return redirect()->route('home')
                         ->with('success','Boat created successfully.');
     }
    
@@ -90,7 +101,7 @@ class BoatController extends Controller
   
         $boat->update($request->all());
   
-        return redirect()->route('boats.index')
+        return redirect()->route('home')
                         ->with('success','Boat updated successfully');
     }
   
@@ -104,7 +115,7 @@ class BoatController extends Controller
     {
         $boat->delete();
   
-        return redirect()->route('boats.index')
+        return redirect()->route('home')
                         ->with('success','Boat deleted successfully');
     }
 }
