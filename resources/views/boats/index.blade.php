@@ -23,14 +23,14 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th>Description</th>
+            <!-- <th>Description</th> -->
             <th width="280px">Action</th>
         </tr>
         @foreach ($boats as $boat)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $boat->name }}</td>
-            <td>{{ $boat->description }}</td>
+            <!-- <td>{{ $boat->description }}</td> -->
             <td>
                 <form action="{{ route('boats.destroy',$boat->id) }}" method="POST">
 

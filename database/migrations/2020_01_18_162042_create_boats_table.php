@@ -1,7 +1,9 @@
 <?php
 
+use App\Boat;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
 class CreateBoatsTable extends Migration
@@ -19,6 +21,14 @@ class CreateBoatsTable extends Migration
             $table->text('description');
             $table->timestamps();
         });
+
+        foreach (Config::get('boats.init_boats') as $i => $tmpBoat) {
+            $boat = new Boat();
+            $boat->name = $tmpBoat['name'];
+            $boat->description = $tmpBoat['description'];
+            $boat->save();
+        }
+
     }
 
     /**
