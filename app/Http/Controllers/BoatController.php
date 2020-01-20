@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Boat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 
 class BoatController extends Controller
 {
@@ -55,9 +56,17 @@ class BoatController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
   
-        Boat::create($request->all());
+        $imageName = time().'.'.$request->image->extension();  
+        $request->image->move(public_path('uploads'), $imageName);
+
+        Boat::create([
+            'name' => $request->name
+        ,   'description' => $request->description
+        ,   'image' => url('/public/uploads').'/'.$imageName
+        ]);
    
         return redirect()->route('home')
                         ->with('success','Boat created successfully.');
@@ -97,9 +106,17 @@ class BoatController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
   
-        $boat->update($request->all());
+        $imageName = time().'.'.$request->image->extension();  
+        $request->image->move(public_path('uploads'), $imageName);
+
+        $boat->update([
+            'name' => $request->name
+        ,   'description' => $request->description
+        ,   'image' => url('/public/uploads').'/'.$imageName
+        ]);
   
         return redirect()->route('home')
                         ->with('success','Boat updated successfully');

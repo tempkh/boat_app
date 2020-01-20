@@ -19,6 +19,7 @@ class CreateBoatsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
+            $table->string('image');
             $table->timestamps();
         });
 
@@ -26,6 +27,7 @@ class CreateBoatsTable extends Migration
             $boat = new Boat();
             $boat->name = $tmpBoat['name'];
             $boat->description = $tmpBoat['description'];
+            $boat->image = url('/boat_app/public/uploads').'/'.$tmpBoat['image'];
             $boat->save();
         }
 

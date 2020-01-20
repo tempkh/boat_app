@@ -22,6 +22,7 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
+            <th>Image</th>
             <th>Name</th>
             <!-- <th>Description</th> -->
             <th width="280px">Action</th>
@@ -29,6 +30,7 @@
         @foreach ($boats as $boat)
         <tr>
             <td>{{ ++$i }}</td>
+            <td width="280px"><img class="img-fluid w-75" src="{{ $boat->image }}" /></td> 
             <td>{{ $boat->name }}</td>
             <!-- <td>{{ $boat->description }}</td> -->
             <td>
