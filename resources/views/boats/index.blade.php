@@ -30,7 +30,11 @@
         @foreach ($boats as $boat)
         <tr>
             <td>{{ ++$i }}</td>
-            <td width="280px"><img class="img-fluid w-75" src="{{ $boat->image }}" /></td> 
+            <td width="280px">
+                <a href="{{ route('boats.show',$boat->id) }}">
+                    <img class="img-fluid w-75" src="{{ $boat->image }}" />
+                </a>
+            </td> 
             <td>{{ $boat->name }}</td>
             <!-- <td>{{ $boat->description }}</td> -->
             <td>
